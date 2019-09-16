@@ -93,7 +93,10 @@ namespace IniciandoForeach
 
             var veiculoSelecionado = RetornaVeiculo(conteudo, nomeCarro);
 
-            Console.WriteLine(string.Format("O carro {0} é da marca {1} fabricado no ano {2}", veiculoSelecionado));
+            Console.WriteLine(string.Format("O carro {0} é da marca {1} fabricado no ano {2}", 
+                ObterValor(veiculoSelecionado,"carro"),
+                ObterValor(veiculoSelecionado,"marca"),
+                ObterValor(veiculoSelecionado,"ano")));
 
             Console.ReadKey();
         }
@@ -119,7 +122,7 @@ namespace IniciandoForeach
             {
                 var separandoInformacoes = item.Split(',');
 
-                var nomeDoCarro = ObterValor(separandoInformacoes[0]);
+                var nomeDoCarro = ObterValor(separandoInformacoes,"carro");
 
                 if(nomeDoCarro == nomeVeiculo)
                 return separandoInformacoes;
@@ -127,9 +130,17 @@ namespace IniciandoForeach
 
             return new string[0];
         }
-        private static string ObterValor(string colecao)
+        private static string ObterValor(string[] colecao,string tipo)
         {
-            return colecao.Split(':')[1];
+            foreach (var item in colecao)
+            {
+                var quebrandoInformacao = item.Split(':');
+
+                if (quebrandoInformacao[0] == tipo)
+                    return quebrandoInformacao[1];
+            }
+
+            return string.Empty;
         }
     }
 }
