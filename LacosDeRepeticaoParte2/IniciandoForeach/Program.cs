@@ -10,7 +10,7 @@ namespace IniciandoForeach
     {
         static void Main(string[] args)
         {
-            ConsultaCarros();
+            ListarValoresMaiorIdade();
         }
         private static void IniciandoForeach01()
         {
@@ -80,7 +80,6 @@ namespace IniciandoForeach
 
             Console.ReadKey();
         }
-
         private static void ConsultaCarros()
         {
             //Base de informações
@@ -100,7 +99,6 @@ namespace IniciandoForeach
 
             Console.ReadKey();
         }
-
         private static void ListarInformacoesPorNome(string conteudo)
         {
             var listaDeInformacoes = conteudo.Split(';');
@@ -113,7 +111,6 @@ namespace IniciandoForeach
                 Console.WriteLine($"Nome do carro {nomeCarro}");
             }
         }
-
         private static string[] RetornaVeiculo(string conteudo, string nomeVeiculo)
         {
             var listaDeInformacoes = conteudo.Split(';');
@@ -141,6 +138,27 @@ namespace IniciandoForeach
             }
 
             return string.Empty;
+        }
+
+        private static void ListarValoresMaiorIdade()
+        {
+            var conteudo = "nome:Felipe,idade:27;nome:Giomar,idade:17;nome:Edson,idade:19;nome:Ericledson,idade:14;nome:Junior,idade:45";
+
+            var listDeConteudo = conteudo.Split(';');
+
+            foreach (var item in listDeConteudo)
+            {
+                var quebraInformacao = item.Split(',');
+                var idade = int.Parse(quebraInformacao[1].Split(':')[1]);
+                var nome = quebraInformacao[0].Split(':')[1];
+
+                if (idade >= 18)
+                {
+                    Console.WriteLine($"Nome: {nome} Idade: {idade}");
+                }
+            }
+
+            Console.ReadKey();
         }
     }
 }
