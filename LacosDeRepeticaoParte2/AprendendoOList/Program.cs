@@ -45,8 +45,9 @@ namespace AprendendoOList
         private static void ListaInformacoes()
         {
             Console.Clear();
+            Console.WriteLine("Nomes adicionados a lista");
             foreach (var item in minhaListaPulgmatica)
-                Console.WriteLine(item.ToUpper());
+                Console.WriteLine($"Nome:{item} foi adicionado a lista");
         }
     }
 }
