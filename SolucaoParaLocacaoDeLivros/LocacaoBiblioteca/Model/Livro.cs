@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LocacaoBiblioteca.Model
 {
+    /// <summary>
+    /// Nossa Class que contem as informações que nossos livros vão apresentar
+    /// </summary>
     public class Livro
     {
         public int Id { get; set; }
