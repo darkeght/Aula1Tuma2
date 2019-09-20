@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemaAmigoFixo", "SystemaAmigoFixo\SystemaAmigoFixo.csproj", "{D8E742FA-207A-4F27-96DD-AB0435BC7B1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SytemaCadastroPessoaComListagem", "SytemaCadastroPessoaComListagem\SytemaCadastroPessoaComListagem.csproj", "{F3C4303F-33DB-414A-8C28-9DECA267A9DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8E742FA-207A-4F27-96DD-AB0435BC7B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8E742FA-207A-4F27-96DD-AB0435BC7B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8E742FA-207A-4F27-96DD-AB0435BC7B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8E742FA-207A-4F27-96DD-AB0435BC7B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C4303F-33DB-414A-8C28-9DECA267A9DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C4303F-33DB-414A-8C28-9DECA267A9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C4303F-33DB-414A-8C28-9DECA267A9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C4303F-33DB-414A-8C28-9DECA267A9DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {122D5718-C659-40FB-B67D-846714FDF70F}
+	EndGlobalSection
+EndGlobal
