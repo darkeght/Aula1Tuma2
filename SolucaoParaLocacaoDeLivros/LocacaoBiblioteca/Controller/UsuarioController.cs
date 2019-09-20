@@ -12,6 +12,24 @@ namespace LocacaoBiblioteca.Controller
     /// </summary>
     public class UsuarioController
     {
+
+        public UsuarioController()
+        {
+            ListaDeUsuarios = new List<Usuario>();
+
+            ListaDeUsuarios.Add(new Usuario()
+            {
+                Login = "admin",
+                Senha = "admin"
+            });
+
+            ListaDeUsuarios.Add(new Usuario()
+            {
+                Login = "darkeght",
+                Senha = "123456"
+            });
+        }
+
         /// <summary>
         /// Metodo que realiza o login dentro do nosso sistema
         /// Para realizar o login padrão use:
@@ -22,10 +40,11 @@ namespace LocacaoBiblioteca.Controller
         /// <returns>Retorna verdadeiro quando existir o usuário com este login e senha</returns>
         public bool LoginSistema(Usuario usuarios)
         {
-            if (usuarios.Login == "Admin" && usuarios.Senha == "Admin")
-                return true;
-            else
-                return false;
+            return ListaDeUsuarios.Exists(x => 
+               x.Login == usuarios.Login 
+            && x.Senha == usuarios.Senha);
         }
+
+        public List<Usuario> ListaDeUsuarios { get; set; }
     }
 }

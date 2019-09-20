@@ -12,6 +12,10 @@ namespace InterfaceBiblioteca
     {
         //Instanciamos "Carregamos para memoria" nosso controlador dos livros
         static LivrosController livros = new LivrosController();
+
+        //Instanciamos "Carregamos para memoria" nosso controlador dos usuarios
+        static UsuarioController usuarioController = new UsuarioController();
+
         static void Main(string[] args)
         {
             Console.WriteLine("SISTEMA DE LOCAÇÃO DE LIVRO 1.0");
@@ -41,6 +45,7 @@ namespace InterfaceBiblioteca
                 Console.WriteLine("1 - Listar usuários");
                 Console.WriteLine("2 - Listar Livros");
                 Console.WriteLine("3 - Cadastrar Livro");
+                Console.WriteLine("4 - Trocar usuário");
                 Console.WriteLine("0 - Sair");
 
                 //Aqui vamos pegar numero digitado
@@ -48,16 +53,36 @@ namespace InterfaceBiblioteca
                 //Executar proxima funcao
                 switch (menuEscolhido)
                 {
+                    case 1:
+                        //Realiza a chamada do menu de listagem de usuarios
+                        Mostrausuarios();
+                        break;
                     case 2:
                         //Realiza a chamada do menu de listagem de livros
                         MostrarLivro();
                         break;
                     case 3:break;
+                    case 4:
+                        while (!RealizaLoginSistema())
+                            Console.WriteLine("Login e senha inválidos");
+                        break;
                     default:
                         break;
                 }
             }
         }
+        /// <summary>
+        /// Metodo para mostrar a lista de usuarios já cadastrados no sistema
+        /// </summary>
+        private static void Mostrausuarios()
+        {
+            //Aqui andamos pela lista de usuarios e mostramos ela no console
+            usuarioController.ListaDeUsuarios.ForEach(i =>
+            Console.WriteLine($"Login usuário:{i.Login}"));
+
+            Console.ReadKey();
+        }
+
         /// <summary>
         /// Metodo que mostra os livros já cadastrados em nossa lista
         /// </summary>
@@ -80,6 +105,7 @@ namespace InterfaceBiblioteca
         /// estiverem corretos.</returns>
         private static bool RealizaLoginSistema()
         {
+            Console.Clear();
             //Informamos o que é preciso para entrar no sistema
             Console.WriteLine("Informe seu login e senha para acessar o sistema:");
 

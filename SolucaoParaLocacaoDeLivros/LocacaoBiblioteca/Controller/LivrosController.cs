@@ -19,6 +19,7 @@ namespace LocacaoBiblioteca.Controller
         {
             //criamos uma lista de livros em memoria
             Livros = new List<Livro>();
+
             //Adicionamos os livros 
             Livros.Add(new Livro()
             {
