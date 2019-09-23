@@ -13,10 +13,10 @@ namespace LocacaoBiblioteca.Controller
     public class UsuarioController
     {
         //Criando privado para impedir o programador de adicionar um ID ou alterar fora da classe
-        private int IdContador = 0;
+        private int IdContador = 1;
         public UsuarioController()
         {
-             ListaDeUsuarios = new List<Usuario>();
+            ListaDeUsuarios = new List<Usuario>();
 
             ListaDeUsuarios.Add(new Usuario()
             {
@@ -44,11 +44,11 @@ namespace LocacaoBiblioteca.Controller
         /// <returns>Retorna verdadeiro quando existir o usuário com este login e senha</returns>
         public bool LoginSistema(Usuario usuarios)
         {
-            return ListaDeUsuarios.Exists(x => 
+            return RetornaListaDeUsuarios().Exists(x => 
                x.Login == usuarios.Login 
             && x.Senha == usuarios.Senha);
         }
-        public List<Usuario> ListaDeUsuarios { get; set; }
+        private List<Usuario> ListaDeUsuarios { get; set; }
         /// <summary>
         /// Metodo usado para adicionar um novo usuario no sistema
         /// </summary>
@@ -58,6 +58,25 @@ namespace LocacaoBiblioteca.Controller
             usuario.Id = IdContador++;
             //Adiciono o meu usuario a minha lista
             ListaDeUsuarios.Add(usuario);
+        }
+        /// <summary>
+        /// Metodo que retorna nossa lista interna de usuarios
+        /// </summary>
+        /// <returns>Lista contendo os usuarios ativos</returns>
+        public List<Usuario> RetornaListaDeUsuarios()
+        {
+            //retorna agora somente a lista de usuarios ativos com a expressão "Where(x => x.Ativo)"
+            return ListaDeUsuarios.Where(x => x.Ativo).ToList<Usuario>();
+        }
+        /// <summary>
+        /// Metodo que desativa um registro de usuario cadastrado em nossa lista
+        /// </summary>
+        /// <param name="identificadoID">Parametro que identifica o usuario que será desativado</param>
+        public void RemoverUsuarioPorID(int identificadoID)
+        {
+            //Aqui usamos o metodo FirstOrDefaul para localizar nosso usuario dentro da lista
+            //com isso conseguimos acessar as propriedades dele e dasativar o registro
+            ListaDeUsuarios.FirstOrDefault(x => x.Id == identificadoID).Ativo = false;
         }
     }
 }

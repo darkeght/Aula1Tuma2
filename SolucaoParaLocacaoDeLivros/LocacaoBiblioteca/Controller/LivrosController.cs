@@ -12,29 +12,31 @@ namespace LocacaoBiblioteca.Controller
     /// </summary>
     public class LivrosController
     {
+        private int IdContador = 1;
         /// <summary>
         /// Metodo construtor que prepara o terreo para já iniciar com livros pré cadastrados
         /// </summary>
         public LivrosController()
         {
             //criamos uma lista de livros em memoria
-            Livros = new List<Livro>();
+            ListaDeLivros = new List<Livro>();
 
             //Adicionamos os livros 
-            Livros.Add(new Livro()
+            ListaDeLivros.Add(new Livro()
             {
+                Id = IdContador++,
                 //Informo apenas o nome do livro para adicionar
                 Nome = "Meu Primeiro Livro"
             });
 
-            Livros.Add(new Livro()
+            ListaDeLivros.Add(new Livro()
             {
+                Id = IdContador++,
                 Nome = "Meu Segundo Livro"
             });
         }
         //Aqui crio uma propriedade para acessar o a lista de livros disponiveis no sistema
-        public List<Livro> Livros { get; set; }
-
+        private List<Livro> ListaDeLivros { get; set; }
         /// <summary>
         /// Metodo que adiciona o livro em nossa lista já "instanciada" criada dentro do 
         /// construtor
@@ -43,7 +45,17 @@ namespace LocacaoBiblioteca.Controller
         public void AdicionarLivro(Livro parametroLivro)
         {
             //Adicionamos o livro em nossa lista.
-            Livros.Add(parametroLivro);
+            parametroLivro.Id = IdContador++;
+            ListaDeLivros.Add(parametroLivro);
         }
+        /// <summary>
+        /// Metodo que retorna a lista de livros
+        /// </summary>
+        /// <returns>Lista de livros</returns>
+        public List<Livro> RetornaListaDeLivros()
+        {
+            return ListaDeLivros;
+        }
+
     }
 }

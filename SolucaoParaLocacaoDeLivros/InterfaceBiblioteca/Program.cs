@@ -9,7 +9,7 @@ using LocacaoBiblioteca.Model;
 namespace InterfaceBiblioteca
 {
     class Program
-    {
+    { 
         //Instanciamos "Carregamos para memoria" nosso controlador dos livros
         static LivrosController livrosController = new LivrosController();
 
@@ -42,11 +42,12 @@ namespace InterfaceBiblioteca
 
                 //Mostra as opções de menu dentro do nosso sistema.
                 Console.WriteLine("Menu sistema");
-                Console.WriteLine("1 - Listar usuários");
+                Console.WriteLine("1 - Listar Usuários");
                 Console.WriteLine("2 - Listar Livros");
                 Console.WriteLine("3 - Cadastrar Livro");
                 Console.WriteLine("4 - Cadastra Usuário");
-                Console.WriteLine("5 - Trocar usuário");
+                Console.WriteLine("5 - Remover Usuário");
+                Console.WriteLine("6 - Trocar Usuário");
                 Console.WriteLine("0 - Sair");
 
                 //Aqui vamos pegar numero digitado
@@ -63,12 +64,18 @@ namespace InterfaceBiblioteca
                         MostrarLivro();
                         break;
                     case 3:
+                        //Metodo que inicializa a tela de adocionar um livro
                         AdicionarLivro();
                         break;
                     case 4:
+                        //Metodo que inicializa a tela de adocionar um usuário 
                         AdicionarUsuario();
                         break;
                     case 5:
+                        //Metodo  que inicializa a tela para remover um usuário
+                        RemoverUsuarioPeloID();
+                        break;
+                    case 6:
                         while (!RealizaLoginSistema())
                             Console.WriteLine("Login e senha inválidos");
                         break;
@@ -77,6 +84,26 @@ namespace InterfaceBiblioteca
                 }
             }
         }
+        private static void RemoverUsuarioPeloID()
+        {
+            Console.WriteLine("Remover um usuario pelo id no sistema");
+            //Metodo que mostra os usuarios criado anteriomente assim facilitando 
+            //o usuario informar o ID correto para desativar 
+            MostrarUsuarios();
+
+            Console.WriteLine("Informe o ID para desativar do sistema:");
+            var usuarioID = int.Parse(Console.ReadLine());
+
+            //Aqui chamamos RemoverUsuarioPorID da nossa classe que controla os usuarios do sistema
+            usuarioController.RemoverUsuarioPorID(usuarioID);
+
+            //Informamos que o usuario foi desativado com sucesso.
+            Console.WriteLine("Usuário desativado com sucesso");
+            Console.ReadKey();
+        }
+        /// <summary>
+        /// Metodo que adiciona um novo usuario no sistema pelo console
+        /// </summary>
         private static void AdicionarUsuario()
         {
             Console.WriteLine("Cadastrar usuário dentro do sistema!");
@@ -130,7 +157,7 @@ namespace InterfaceBiblioteca
         private static void MostrarUsuarios()
         {
             //Aqui andamos pela lista de usuarios e mostramos ela no console
-            usuarioController.ListaDeUsuarios.ForEach(i =>
+            usuarioController.RetornaListaDeUsuarios().ForEach(i =>
             Console.WriteLine($"Id: {i.Id} Login usuário:{i.Login}"));
 
             Console.ReadKey();
@@ -141,10 +168,9 @@ namespace InterfaceBiblioteca
         /// </summary>
         private static void MostrarLivro()
         {
-
-            livrosController.Livros.ForEach(i => 
+            livrosController.RetornaListaDeLivros().ForEach(i => 
             //Para cada livro cadastrado temos a demostração no console por esta parte
-            Console.WriteLine($"Nome do livro:{i.Nome}"));
+            Console.WriteLine($"Id {i.Id} Nome do livro:{i.Nome}"));
 
             Console.ReadKey();
         }
