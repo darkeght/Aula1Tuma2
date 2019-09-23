@@ -80,9 +80,35 @@ namespace CestaDeFrutas
 
             Console.WriteLine("----------------------------- Filtro Cores");
 
-            var mostrandoFind = cestaDeFrutas.Find(x => x.Cor == "Amarela" || x.Cor == "Vermelha");
+            // aqui  criamos uma variavel que recebera o valor buscado
+            var mostrandoFind = cestaDeFrutas.
+                //aqui é feito o filtro das informações por uma "ou --> || <--- " outra cor
+                Find(x => x.Cor == "Amarelo" || x.Cor == "Vermelho");
 
-            var mostrandoFindAll = cestaDeFrutas.FindAll(x => x.Cor == "Amarela" || x.Cor == "Vermelha");
+            Console.WriteLine($"Id {mostrandoFind.Id} Nome {mostrandoFind.Nome} este aqui");
+            //aqui criamos uma variavel que recebera a coleção que estamos buscando
+            var mostrandoFindAll = cestaDeFrutas.
+                //Find all com esta condição tras frutas de cor amarela "ou" vermelhas
+                FindAll(x => x.Cor == "Amarelo" || x.Cor == "Vermelho");
+            //imprimo com a função do ForEach do linq
+            mostrandoFindAll.ForEach(i => Console.WriteLine($"Id {i.Id} Nome {i.Nome}"));
+            //Aqui ordenamos a lista pelo nome
+            var listaOrdenada = mostrandoFindAll.OrderBy(x => x.Nome);
+            //Como agora ele não é mais um List<Fruta> usamos o foreach para apresentar os valores
+            foreach (var item in listaOrdenada)
+                Console.WriteLine($"Id {item.Id} Nome {item.Nome}");
+
+            Console.WriteLine("----------------------------- Find com order by");
+
+            var cestaDeFrutasFindOrder = cestaDeFrutas
+                //Ordenei minha lista 
+                .OrderBy(x => x.Nome)
+                //Converti para lista de fruta novamente
+                .ToList<Fruta>()
+                //Busco minha informação
+                .Find(x => x.Cor == "Amarelo" || x.Cor == "Vermelho");
+
+            Console.WriteLine($"Id {cestaDeFrutasFindOrder.Id} Nome {cestaDeFrutasFindOrder.Nome}");
 
             Console.ReadKey();
             #endregion
