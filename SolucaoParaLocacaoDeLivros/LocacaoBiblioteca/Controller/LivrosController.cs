@@ -34,5 +34,16 @@ namespace LocacaoBiblioteca.Controller
         }
         //Aqui crio uma propriedade para acessar o a lista de livros disponiveis no sistema
         public List<Livro> Livros { get; set; }
+
+        /// <summary>
+        /// Metodo que adiciona o livro em nossa lista já "instanciada" criada dentro do 
+        /// construtor
+        /// </summary>
+        /// <param name="parametroLivro">Informações do livro que vamos adicionar</param>
+        public void AdicionarLivro(Livro parametroLivro)
+        {
+            //Adicionamos o livro em nossa lista.
+            Livros.Add(parametroLivro);
+        }
     }
 }
