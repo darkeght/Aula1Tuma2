@@ -110,6 +110,12 @@ namespace CestaDeFrutas
 
             Console.WriteLine($"Id {cestaDeFrutasFindOrder.Id} Nome {cestaDeFrutasFindOrder.Nome}");
 
+
+            var totalGramas = cestaDeFrutas.Sum(x => x.Peso);
+            var mediaGramas = cestaDeFrutas.Average(x => x.Peso);
+
+
+
             Console.ReadKey();
             #endregion
         }
