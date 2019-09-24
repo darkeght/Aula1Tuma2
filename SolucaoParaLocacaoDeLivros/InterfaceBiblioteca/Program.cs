@@ -47,7 +47,8 @@ namespace InterfaceBiblioteca
                 Console.WriteLine("3 - Cadastrar Livro");
                 Console.WriteLine("4 - Cadastra Usuário");
                 Console.WriteLine("5 - Remover Usuário");
-                Console.WriteLine("6 - Trocar Usuário");
+                Console.WriteLine("6 - Remover Livro");
+                Console.WriteLine("7 - Trocar Usuário");
                 Console.WriteLine("0 - Sair");
 
                 //Aqui vamos pegar numero digitado
@@ -76,6 +77,10 @@ namespace InterfaceBiblioteca
                         RemoverUsuarioPeloID();
                         break;
                     case 6:
+                        //Metodo que remove os  livros de nossa lista
+                        RemoverLivroPeloID();
+                        break;
+                    case 7:
                         while (!RealizaLoginSistema())
                             Console.WriteLine("Login e senha inválidos");
                         break;
@@ -84,6 +89,26 @@ namespace InterfaceBiblioteca
                 }
             }
         }
+        /// <summary>
+        /// Metodo que realiza a remoção do livro dentro do sistema
+        /// </summary>
+        private static void RemoverLivroPeloID()
+        {
+            Console.WriteLine("Remover um livro pelo id no sistema");
+
+            MostrarLivro();
+
+            Console.WriteLine("Informe o ID para desativar do sistema:");
+            var livroID = int.Parse(Console.ReadLine());
+
+            livrosController.RemoverLivroPorId(livroID);
+
+            Console.WriteLine("Livro removido com sucesso!");
+            Console.ReadKey();
+        }
+        /// <summary>
+        /// Metodo que remove os usuarios pelo o ID informado pelo usuario 
+        /// </summary>
         private static void RemoverUsuarioPeloID()
         {
             Console.WriteLine("Remover um usuario pelo id no sistema");
@@ -123,7 +148,6 @@ namespace InterfaceBiblioteca
             Console.WriteLine("Usuário cadastrado com sucesso!");
             Console.ReadKey();
         }
-             
         /// <summary>
         /// Metodo que adiciona dentro de nossa lista um novo registro de livro
         /// </summary>
@@ -150,7 +174,6 @@ namespace InterfaceBiblioteca
             //ReadKey apenas para que ele visualize esta informação
             Console.ReadKey();
         }
-
         /// <summary>
         /// Metodo para mostrar a lista de usuarios já cadastrados no sistema
         /// </summary>
@@ -162,7 +185,6 @@ namespace InterfaceBiblioteca
 
             Console.ReadKey();
         }
-
         /// <summary>
         /// Metodo que mostra os livros já cadastrados em nossa lista
         /// </summary>
