@@ -62,7 +62,71 @@ namespace ListandoPessoas2.Controller
             //e calculo de metodos quando necessario
             get { return ListaDePessoas; }
         }
-
+        /// <summary>
+        /// Metodo que retona nossa lista de pessoas  ordenada de forma Asc
+        /// pelo nome de cada uma
+        /// </summary>
+        /// <returns>Retornamos o valor já ordenado de nossa lista</returns>
+        public List<Pessoa> GetPessoasOrdenadaAsc()
+        {           //Aqui temos nossa lista
+            return ListaDePessoas
+                //Aqui ordenamos ela, IEnumerable é novo tipo dela durante a conversão
+                .OrderBy(x => x.Nome)
+                //Aqui voltamos o tipo para lista de pessoas
+                .ToList<Pessoa>();
+        }
+        /// <summary>
+        /// Metodo publico que retorna a lista ordenada pela data de nascimento
+        /// da maior data para a menor data
+        /// </summary>
+        /// <returns>Lista ordenada</returns>
+        public List<Pessoa> GetPessoasOrdenadaDescPelaDataNascimento()
+        {
+            return ListaDePessoas
+                .OrderByDescending(x => x.DataNascimento)
+                .ToList<Pessoa>();
+        }
+        /// <summary>
+        /// Metodo que retorna as pessoas com determinado valor dentro da carteira
+        /// </summary>
+        /// <param name="valor">Valor informado para o filtro
+        /// caso não informado o parametro o valor padrão se torna 500</param>
+        /// <returns>Retorna a lista com o valor definido e ordenado</returns>
+        public List<Pessoa> GetPessoasComMaisPilasNaCarteira(
+            //Em caso de não informamos o valor ele fica 500 se não ele passa
+            //o valor informado pelo programador
+            double valor = 500)
+        {
+            return ListaDePessoas
+                //Realizamos o filtro de busca
+                .FindAll(x => x.Carteira > valor)
+                //Ordenamos as informações
+                .OrderBy(x => x.Carteira)
+                //Convertemos para uma lista do tipo pessoa
+                .ToList<Pessoa>();
+        }
+        /// <summary>
+        /// Metodo que retorna a lista de pessoas com idade maior que idade 
+        /// informada, caso não informa do um valor o padrão é 18
+        /// </summary>
+        /// <param name="idade">Idade que vamos usar para compara</param>
+        /// <returns>Retorna a lista de pessoas pela idade informada</returns>
+        public List<Pessoa> GetPessoasComIdadeMaiorA(int idade = 18)
+        {
+            return ListaDePessoas
+                .FindAll(x => (DateTime.Now.Year - x.DataNascimento.Year) > idade);
+        }
+        /// <summary>
+        /// Metodo que retorna idade meno que idade informada por parametro
+        /// caso parametro não informado o valor padrao e 16
+        /// </summary>
+        /// <param name="idade">Parametro da idade</param>
+        /// <returns>Retorna a lista apenas com os valores</returns>
+        public List<Pessoa> GetPessoasComIdadeMenorQue(int idade = 16)
+        {
+            return ListaDePessoas
+                .FindAll(x => (DateTime.Now.Year - x.DataNascimento.Year) < idade);
+        }
 
     }
 }
