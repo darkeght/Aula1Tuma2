@@ -11,7 +11,12 @@ namespace SistemaRelatorioCarros.Controller
     public class VendasController
     {
         SistemaVendasContext vendasContext = new SistemaVendasContext();
-
+        /// <summary>
+        /// Metodo que retorna a lista de vendas, caso não informar o 
+        /// valor ele retorna a lista sem filtro
+        /// </summary>
+        /// <param name="mes">Mes para realizar o filtro</param>
+        /// <returns>Lista filtrada ou não dependendo do parametro informado</returns>
         public List<Venda> GetVendas(int mes = 0)
         {
             //retornamos nossa lista de vendas sem nenhum filtro neste momento
