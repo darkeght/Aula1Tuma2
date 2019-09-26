@@ -12,10 +12,14 @@ namespace SistemaRelatorioCarros.Controller
     {
         SistemaVendasContext vendasContext = new SistemaVendasContext();
 
-        public List<Venda> GetVendas()
+        public List<Venda> GetVendas(int mes = 0)
         {
             //retornamos nossa lista de vendas sem nenhum filtro neste momento
-            return vendasContext.ListaVendasPublica;
+            if (mes == 0)
+                return vendasContext.ListaVendasPublica;
+            else
+                return vendasContext.ListaVendasPublica
+                    .FindAll(x => x.Data.Month == mes);
         }
     }
 }
