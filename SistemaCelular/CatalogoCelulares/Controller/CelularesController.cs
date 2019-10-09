@@ -47,8 +47,7 @@ namespace CatalogoCelulares.Controller
                 return false;//Caso não tenha encontrado retornamos falso
             else
             {
-                celular = item; //Encontrou ele atualiza a informação
-                celular.DataAlteracao = DateTime.Now;//atualizamos 
+                item.DataAlteracao = DateTime.Now;//atualizamos 
                 //a data da alteração do nosso celular
             }
 
