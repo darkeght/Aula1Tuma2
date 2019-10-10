@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LocacaoBiblioteca.Model
 {
-    public class LocacaoContext
+    public class LocacaoContext : DbContext
     {
         ///Propriedade que armazena o ID dos livros adicionado ao sistema
-        public int IdContadorLivros { get; set; } = 1;
+        /*public int IdContadorLivros { get; set; } = 1;*/
+
         public int IdContadorUsuarios { get; set; } = 1; 
         /// <summary>
         /// Metodo contrutor que prepara nossa classe LocacaoContext
@@ -17,27 +19,30 @@ namespace LocacaoBiblioteca.Model
         public LocacaoContext()
         {
             //criamos uma lista de livros em memoria
-            ListaDeLivros = new List<Livro>();
+            //ListaDeLivros = new List<Livro>();
+
             //criamos uma lista de usuarios em memoria
             ListaDeUsuarios = new List<Usuario>();
 
+            #region Codigo antigo 
             //Adicionamos os livros 
-            ListaDeLivros.Add(new Livro()
-            {
-                Id = IdContadorLivros++,
-                //Informo apenas o nome do livro para adicionar
-                Nome = "Meu Primeiro Livro"
-            });
-            ListaDeLivros.Add(new Livro()
-            {
-                Id = IdContadorLivros++,
-                Nome = "Meu Segundo Livro"
-            });
-            ListaDeLivros.Add(new Livro()
-            {
-                Id = IdContadorLivros++,
-                Nome = "Guia do mochileiro das galaxias 'Pika'"
-            });
+            /* ListaDeLivros.Add(new Livro()
+             {
+                 Id = IdContadorLivros++,
+                 //Informo apenas o nome do livro para adicionar
+                 Nome = "Meu Primeiro Livro"
+             });
+             ListaDeLivros.Add(new Livro()
+             {
+                 Id = IdContadorLivros++,
+                 Nome = "Meu Segundo Livro"
+             });
+             ListaDeLivros.Add(new Livro()
+             {
+                 Id = IdContadorLivros++,
+                 Nome = "Guia do mochileiro das galaxias 'Pika'"
+             });*/
+            #endregion
 
             //Adicionamos o usuario
             ListaDeUsuarios.Add(new Usuario()
@@ -54,7 +59,9 @@ namespace LocacaoBiblioteca.Model
             });
         }
 
-        public List<Livro> ListaDeLivros { get; set; }
+        //public List<Livro> ListaDeLivros { get; set; }
+
+        public DbSet<Livro> ListaDeLivros { get; set; }
         public List<Usuario> ListaDeUsuarios { get; set; }
     }
 }

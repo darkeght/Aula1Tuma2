@@ -49,6 +49,7 @@ namespace InterfaceBiblioteca
                 Console.WriteLine("5 - Remover Usuário");
                 Console.WriteLine("6 - Remover Livro");
                 Console.WriteLine("7 - Trocar Usuário");
+                Console.WriteLine("8 - Atualizar Livro");
                 Console.WriteLine("0 - Sair");
 
                 //Aqui vamos pegar numero digitado
@@ -84,11 +85,51 @@ namespace InterfaceBiblioteca
                         while (!RealizaLoginSistema())
                             Console.WriteLine("Login e senha inválidos");
                         break;
+                    case 8:
+                        //Metodo que realiza a alteração de nosso livro
+                        AtualizaLivro();
+                        break;
                     default:
                         break;
                 }
             }
         }
+        /// <summary>
+        /// Metodo de interface que atualiza o livro
+        /// </summary>
+        private static void AtualizaLivro()
+        {
+            Console.WriteLine("Atualizar um livro pelo Id no sistema");
+
+            MostrarLivro();
+
+            Console.WriteLine("Informe o ID para alterar do sistema:");
+            var livroID = int.Parse(Console.ReadLine());
+
+            var livro = livrosController.RetornaListaDeLivros()
+                .FirstOrDefault(x => x.Id == livroID);
+
+            if (livro != null)
+            {
+                Console.WriteLine("Informe um novo nome para o livro");
+                var novoNome = Console.ReadLine();
+
+                livro.Nome = novoNome;
+
+                var resultado = livrosController.AtualizarLivro(livro);
+
+                if (resultado)
+                    Console.WriteLine("Livro atualizado com sucesso!");
+                else
+                    Console.WriteLine("Livro não foi atualizado");
+            }
+            else
+                Console.WriteLine("Livro informado é invalido");
+
+            Console.ReadKey();
+        }
+
+
         /// <summary>
         /// Metodo que realiza a remoção do livro dentro do sistema
         /// </summary>

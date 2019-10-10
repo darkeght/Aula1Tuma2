@@ -28,8 +28,10 @@ namespace LocacaoBiblioteca.Controller
         public void AdicionarLivro(Livro parametroLivro)
         {
             //Adicionamos o livro em nossa lista.
-            parametroLivro.Id = contextDB.IdContadorLivros++;
             contextDB.ListaDeLivros.Add(parametroLivro);
+
+            //Salvamos em nosso banco de dados as informações
+            contextDB.SaveChanges();
         }
         /// <summary>
         /// Metodo que retorna a lista de livros
@@ -50,6 +52,32 @@ namespace LocacaoBiblioteca.Controller
             //Tratamento do valor quando ele não encontrar um livro com o id
             if (livro != null)
                 livro.Ativo = false;
+
+            //Salvamos as alterações em nosso banco de dados
+            contextDB.SaveChanges();
+        }
+        /// <summary>
+        /// Metodo para atualizar nosso livro dentro do sistema
+        /// </summary>
+        /// <param name="item">Livro que vamos etsra atualizando dentro do sistema</param>
+        /// <returns>Retorna verdadeiro para quando o mesmo atualizar o livro</returns>
+        public bool AtualizarLivro(Livro item)
+        {
+            var findLivro = contextDB //Nosso banco de dados 
+                .ListaDeLivros //Lista de livros do nosso bando de dados
+                .FirstOrDefault(x => x.Id == item.Id); //regra de busca do nosso livro
+
+            if(findLivro != null) //Verificamos se o livro realmente existe para estarmos atualizando
+            {
+                //Colocamos a data de alteração do nosso registro
+                findLivro.DataAlteracao = DateTime.Now;
+                //Salvamos em nosso banco de dados 
+                contextDB.SaveChanges();
+                //Retornamos veraddeiro para alteração
+                return true;
+            }
+            //So chegamos a este ponto quando ele nao realizar o salvamento da alteração
+            return false;
         }
     }
 }
