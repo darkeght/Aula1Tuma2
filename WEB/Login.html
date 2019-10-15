@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        body{
+            height:49vh;
+        }
+
+        .content_inputs{
+            width: 400px;
+            height: 260px;
+            margin: auto;
+            margin-top: 25vh;
+            padding: 10px;
+            background: #ffffff78;
+            border-radius: 15px;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            margin-top: 25px;
+            border-radius: 8px;
+            background-color: white;
+            border: 0px;
+            font-size: 25px;
+            font-family: sans-serif;
+        }
+
+        video{
+            left: 0;
+            position: fixed;
+            top: 0;
+            z-index: -1;
+
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop > 
+        <source src="backgropund.mp4" type="video/mp4">
+    </video>
+    <div class="content_inputs">
+        <input type="text" name="login" placeholder="Usuário" />
+        <input type="password" name="password" placeholder="Senha" />
+        <input type="button" name="entrar" value="entrar" />
+    </div>
+</body>
+</html>

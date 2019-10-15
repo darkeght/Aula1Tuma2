@@ -1,0 +1,85 @@
+﻿<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Formulario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="height:100vh;background-image:url('https://www.baixarvideosgratis.com.br/imagens/mensagens/boa-tarde/mensagem-de-boa-tarde-com-versiculo-da-biblia-sofonias-3-17.jpg');background-size:cover;">
+    <div class="row h-100" style="background-color:transparent;">
+        <div class="col-12 h-100 d-table" style="background-color:transparent;">
+            <div class="card card-block d-table-cell align-middle" style="background-color:transparent;">
+                <div class="row d-flex justify-content-center">
+                    <div class="card align-middle" style="background: #ffffffc7;">
+                        <div class="card-header">
+                            Formulário
+                        </div>
+                        <div class="col-md-12 card-body">
+                            <div class="row form-group">
+                                <div class="col-md-12 ">
+                                    <input type="text" class="w-100 form-control" name="nome" placeholder="Nome completo">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-8">
+                                    <input type="text" class="w-100 form-control" name="nacionalidade" placeholder="Nacionalidade">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" class="w-100 form-control" name="idade" placeholder="Idade">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <input type="text" name="cpf" class="w-100 form-control" placeholder="Informe seu cpf">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="date" class="w-100 form-control" name="datanascimento">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="button" class="w-100 btn btn-success" name="enviar" value="enviar">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        /*Forma que executamos após o documento já esta carregado*/
+        $(document).ready(
+            /* uma função dentro de nosso document ready */
+            function () {
+                /*mask para nosso campo de cpf*/
+                $('input[name="cpf"]').mask("000.000.000-00");
+                /* adicionando funções aos botões */
+                $('input[type="button"]').click(
+                    function () {
+                        /* obtemos a idade */
+                        var idade = $('input[name="idade"]').val();
+                        /* obtemos o nome da pessoa */
+                        var nome = $('input[name="nome"]').val();
+                        /* Comparamos a idade */
+                        if (idade < 18) {
+                            /* Apresentamos a idade */
+                            alert("O formulario não aceita menores de 18 anos.");
+                            /* redirecionamos  */
+                            window.location = "http://www.tirol.com.br/";
+                        } else {
+                            alert("Olá " + nome + " bem vindo a cervejaria");
+                            window.location = "https://www.ambev.com.br";
+                        }
+                    });
+            }
+        );
+    </script>
+</body>
+</html>
