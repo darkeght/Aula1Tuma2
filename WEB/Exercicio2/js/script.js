@@ -4,27 +4,34 @@ $(document).ready(
         //Informamos que no botão do click ele ira chamar nosso alerta
         $('input[name="bntconverter"]').click(function () {
 
-            var valordolar = 4.16;
-            var valoreal = $('input[name="valoreal"]').val()
-                .replace(".", "")
-                .replace(",", ".");
-            
+            var url = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%2710-16-2019%27&$top=100&$format=json";
 
-            var convercao = (valoreal / valordolar)
-                .toFixed(2)
-                .toString()
-                .replace(/(\d)(\d{2})$/, "$1,$2");
+            $.getJSON(url, function (data) {
 
-            $('input[name="valordolar"]').val(convercao);
+                var valordolar = data.value[0].cotacaoVenda;
+                /*  Obter um valor */
+                var valoreal = $('input[name="valoreal"]').val()
+                    .replace(".", "")
+                    .replace(".", "")
+                    .replace(",", ".");
+
+
+                var convercao = (valoreal / valordolar)
+                    .toLocaleString('en-US', { minimumFractionDigits: 2, currency: 'USD' });
+
+                /* Inserir um valor*/
+                $('input[name="valordolar"]').val(convercao);
+            });
+
         });
 
         //Colocamos a mask em nosso campo 999.999,00
-        $('input[name="valoreal"]').mask("000.000,00");
-
-        //usando api externa
-        $.getJSON("https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%2710-17-2019%27&$top=100&$format=json", function (data) {
-            var teste = data.value[0].cotacaoCompr;
-            //data[0].valoreconvertido analisar o codigo pelo debug para verificar os valores
+        //$('input[name="valoreal"]').mask("000.000,00");
+        $('input[name="valoreal"]').maskMoney({
+            showSymbol: false,
+            symbol: "R$",
+            decimal: ",",
+            thousands: "."
         });
     }
 );
