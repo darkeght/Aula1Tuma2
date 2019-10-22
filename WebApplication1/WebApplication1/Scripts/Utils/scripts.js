@@ -289,6 +289,23 @@ var data = [
     }
 ];
 
+var template =
+    "    <div class=\"card\">" +
+    "        <div class=\"card-header\" id=\"heading{id}\">" +
+    "            <h2 class=\"mb-0\">" +
+    "                <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapse{id}\" aria-expanded=\"true\" aria-controls=\"collapse{id}\">" +
+    "                    {titulo}" +
+    "                </button>" +
+    "            </h2>" +
+    "        </div>" +
+    "        <div id=\"collapse{id}\" class=\"collapse\" aria-labelledby=\"heading{id}\" data-parent=\"#accordionExample\">" +
+    "            <div class=\"card-body\">" +
+    "                {conteudo}" +
+    "            </div>" +
+    "        </div>" +
+    "    </div>";
+
+
 $(document).ready(function () {
     //adicionando uma função ao click do botão
     $('#Button1').click(function () {
@@ -308,8 +325,14 @@ $(document).ready(function () {
                 //finalizamos nosso objeto
                 templateContent += "},";
                 //adicionamos ao nosso campo de texto
-                $('#divContent').append(
-                    "<button onclick=\"alert('" + templateContent + "')\">" + value.bairro + "</button>"
+                $('#accordionExample').append(
+                    template
+                        .replace("{titulo}", value.bairro)
+                        .replace("{conteudo}", templateContent)
+                        .replace("{id}", key)
+                        .replace("{id}", key)
+                        .replace("{id}", key)
+                        .replace("{id}", key)
                 );
             });
         //});
