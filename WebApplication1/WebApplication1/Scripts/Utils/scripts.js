@@ -19,7 +19,7 @@ $(document).ready(function () {
                 templateContent += "},";
                 //adicionamos ao nosso campo de texto
                 $('#divContent').append(
-                    "<textarea>" + templateContent + "</textarea>"
+                    "<button onclick=\"alert('"+templateContent+"')\">" + value.bairro + "</button>"
                 );
             });
         });
