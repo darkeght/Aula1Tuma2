@@ -1,0 +1,19 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<input type="text" name="MeuValor"  placeholder="Informe algo"/>
+		<input type="button" name="meuBottao" value="Magica" />
+	</body>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+		    $('input[name="meuBottao"]').click(function(){
+				var msg = $('input[name="MeuValor"]').val();
+				
+				window.location = "Pagina2.html?msg=" + msg;
+			});
+		});
+	</script>	
+</html>
