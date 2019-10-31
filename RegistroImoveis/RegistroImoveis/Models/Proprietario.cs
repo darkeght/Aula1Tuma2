@@ -14,6 +14,7 @@ namespace RegistroImoveis.Models
         [CustomValidator]
         public string Nome { get; set; } = string.Empty;
 
+        [CustomValidator]
         public DateTime DataNascimento { get; set; } = DateTime.MinValue;
 
         public string Email { get; set; } = string.Empty;
