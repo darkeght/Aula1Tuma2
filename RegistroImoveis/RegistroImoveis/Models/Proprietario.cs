@@ -11,12 +11,11 @@ namespace RegistroImoveis.Models
         [Key]
         public int Id { get; set; }
 
-        [CustomValidator("Nome")]
+        [CustomValidator]
         public string Nome { get; set; } = string.Empty;
 
         public DateTime DataNascimento { get; set; } = DateTime.MinValue;
 
-        [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
     }

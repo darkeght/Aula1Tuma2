@@ -8,27 +8,19 @@ namespace RegistroImoveis.Models
 {
     public class CustomValidator : ValidationAttribute
     {
-
-        private string FildName { get; set; }
-
-        public CustomValidator(string field)
-        {
-            FildName = field;
-        }
+        RegistroContext db = new RegistroContext();
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-
-            if (FildName == "Nome")
+            if(validationContext.DisplayName == "Nome")
             {
-                RegistroContext db = new RegistroContext();
+                if (db.Proprietarios
+                    .FirstOrDefault(x => x.Nome == value.ToString()) != null)
+                    return new ValidationResult("Usuário já existe");
 
-                if (db.Proprietarios.FirstOrDefault(x => x.Nome == value.ToString()) != null)
-                    return new ValidationResult("Usúario já cadastrado");
+                if (value.ToString().Contains("Giomar"))
+                    return new ValidationResult("Não é possivel registar esse nome em nossa base de dados porque ele é unico.");
             }
-
-            if(FildName == "Giomar")
-                return new ValidationResult("Segue o lider");
 
             return ValidationResult.Success;
         }
